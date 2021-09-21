@@ -68,3 +68,15 @@ C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\Reservatio
 C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\ref\ReservationApp.dll
 C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\ReservationApp.pdb
 C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\ReservationApp.genruntimeconfig.cache
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\bin\Debug\net5.0\ReservationApp.Views.dll
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\bin\Debug\net5.0\ReservationApp.Views.pdb
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\ReservationApp.RazorAssemblyInfo.cache
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\ReservationApp.RazorAssemblyInfo.cs
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\ReservationApp.TagHelpers.input.cache
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\ReservationApp.TagHelpers.output.cache
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\ReservationApp.RazorCoreGenerate.cache
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\ReservationApp.RazorTargetAssemblyInfo.cs
+C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\obj\Debug\net5.0\ReservationApp.Views.pdb

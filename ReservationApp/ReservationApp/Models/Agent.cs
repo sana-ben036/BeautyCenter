@@ -9,7 +9,7 @@ namespace ReservationApp.Models
     public class Agent
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public DateTime CreateDate { get; set; }
 
         [Required(ErrorMessage = "The agent name field is required !")]
@@ -18,7 +18,7 @@ namespace ReservationApp.Models
 
         [Required(ErrorMessage = "The service field is required !")]
         [Display(Name = "Service")]
-        public Guid ServiceId { get; set; }
+        public int ServiceId { get; set; }
         public virtual Service Service { get; set; }
     }
 }

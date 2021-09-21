@@ -9,7 +9,7 @@ namespace ReservationApp.Models
     public class Service
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public DateTime CreateDate { get; set; }
 
         [Required(ErrorMessage = "The service name field is required !")]

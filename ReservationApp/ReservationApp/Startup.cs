@@ -41,6 +41,24 @@ namespace ReservationApp
                 options.Filters.Add(new AuthorizeFilter(policy));
 
             }).AddXmlSerializerFormatters();
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "";
+                    options.ClientSecret = "";
+
+                })
+                .AddFacebook(options =>
+                {
+                    options.AppId = "";
+                    options.AppSecret = "";
+
+                })
+               
+                ;
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +67,10 @@ namespace ReservationApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseStatusCodePagesWithRedirects("/Error/{0}");// se declancher en mode production
             }
 
             app.UseFileServer();
@@ -59,7 +81,7 @@ namespace ReservationApp
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("default", "{controller=Account}/{action=login}/{id ?}");
+                routes.MapRoute("default", "{controller=Service}/{action=Index}/{id ?}");
             });
 
 

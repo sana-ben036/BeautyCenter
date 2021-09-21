@@ -152,9 +152,10 @@ namespace ReservationApp.Migrations
 
             modelBuilder.Entity("ReservationApp.Models.Agent", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -163,8 +164,8 @@ namespace ReservationApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -249,9 +250,10 @@ namespace ReservationApp.Migrations
 
             modelBuilder.Entity("ReservationApp.Models.Reservation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
@@ -259,14 +261,11 @@ namespace ReservationApp.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("TypeId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -282,9 +281,10 @@ namespace ReservationApp.Migrations
 
             modelBuilder.Entity("ReservationApp.Models.Service", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -365,7 +365,8 @@ namespace ReservationApp.Migrations
                     b.HasOne("ReservationApp.Models.Service", "Service")
                         .WithMany("Reservations")
                         .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("ReservationApp.Models.AppUser", "User")
                         .WithMany("Reservations")
