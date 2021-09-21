@@ -45,14 +45,14 @@ namespace ReservationApp
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "";
-                    options.ClientSecret = "";
+                    options.ClientId = "821422014065-3up00nfhobng4kd6r1ptl9fg9j4k9184.apps.googleusercontent.com";
+                    options.ClientSecret = "1YajMxyJ_SKO99ONrP6QYyZQ";
 
                 })
                 .AddFacebook(options =>
                 {
-                    options.AppId = "";
-                    options.AppSecret = "";
+                    options.AppId = "3210046739219032";
+                    options.AppSecret = "9a2916bfc3e2fc2aac00ed5b9f4887e0";
 
                 })
                
