@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AppUser>
+
+@{
+    int counter = 1;
+    ViewBag.Title = "BeautyCenter  | Users";
+}
+
+<div class="my-5 text-left">
+    <h2 > List of Users </h2>
+    <hr />
+</div>
+
+<table id="UsersTable" class="table table-hover text-center">
+    <thead class="alert-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">@Html.DisplayNameFor(item => item.FirstName)</th>
+            <th scope="col">@Html.DisplayNameFor(item => item.LastName)</th>
+            <th scope="col">@Html.DisplayNameFor(item => item.PhoneNumber)</th>
+            <th scope="col">@Html.DisplayNameFor(item => item.Email)</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (AppUser user in Model)
+        {
+            <tr>
+                <td>@counter</td>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.Email</td>
+
+                <td>
+                    <form method="post" asp-action="DeleteUser" asp-controller="Account" asp-route-id="@user.Id">
+                        <a class="btn btn-warning text-white btn-sm"  asp-action="EditUser" asp-controller="Account" asp-route-id="@user.Id">Update</a> 
+                        <button  type="submit" class="btn btn-secondary btn-sm"  onclick="return confirm('Are you sure ??')">Delete</button>
+                    </form>
+                    
+                </td>
+            </tr>
+            counter++;
+
+        }
+
+
+    </tbody>
+</table>
+
+<div class="my-5 text-center">
+    <a  asp-action="Register">Add User</a> |
+    <a  asp-action="index" asp-controller="student">Back to Home</a>
+</div>
+
+<div class=" my-3 text-danger" asp-validation-summary="All"></div>
+
+@section DTListUsers{ 
+        <script>
+            $(document).ready(function () {
+                $('#UsersTable').dataTable();
+            });
+
+
+        </script>
+
+
+}
+
+
+
+

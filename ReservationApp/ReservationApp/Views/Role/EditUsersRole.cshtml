@@ -1,0 +1,44 @@
+﻿@model List<EditUsersRoleViewModel>
+@{ 
+    ViewBag.Title = "ReservationSYS | Edit UsersRole";
+}
+
+
+
+<div class="my-2 text-left col-12 ">
+    <h2> Edit Users Role </h2>
+    <hr />
+</div>
+<form class="mx-lg-auto my-5 w-50 " method="post">
+    <div class="my-5">
+        <div class="card">
+            <div class="card-header">
+                <span>Add or Remove Users from this Role</span>
+                <hr />
+                <input disabled value="@ViewBag.RoleName" class="form-control text-success font-weight-bold text-center" />
+            </div>
+            <div class="card-body">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    var uniqueName = "User" + i;
+                    <div class="form-check m-1">
+                        <input hidden asp-for="@Model[i].UserId" />
+                        <input hidden asp-for="@Model[i].UserName" />
+                        <input asp-for="@Model[i].IsSelected" id="@uniqueName" class="form-check-input" />
+                        <label for="@uniqueName" class="form-check-label">@Model[i].UserName</label>
+                    </div>
+
+                }
+
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Save</button> 
+                <a asp-action="Edit" asp-route-id="@ViewBag.RoleId" class="btn btn-dark mx-2">Back</a>
+
+
+
+            </div>
+        </div>
+    </div>
+</form>

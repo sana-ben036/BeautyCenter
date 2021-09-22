@@ -1,0 +1,92 @@
+﻿@model IEnumerable<IdentityRole>
+
+@{
+    int counter = 1;
+    ViewBag.Title = "ReservationSYS  | Roles";
+}
+
+<div class="my-2 text-left col-12">
+    <h2> List of Roles </h2>
+    <hr />
+</div>
+
+
+@if (Model.Any())
+{
+<div class="mx-lg-auto my-5 col-12 ">
+    <table id="RolesTable" class="table table-hover text-center ">
+        <thead class="text-white" style="background-color:#44426B">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">@Html.DisplayNameFor(item => item.Id)</th>
+                <th scope="col">@Html.DisplayNameFor(item => item.Name)</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (IdentityRole role in Model)
+                {
+                        <tr>
+                            <td>@counter</td>
+                            <td>@role.Id</td>
+                            <td>@role.Name</td>
+
+                            <td>
+                                <form method="post" asp-action="Delete" asp-controller="Role" asp-route-id="@role.Id">
+                                    <a class="btn btn-primary text-white btn-sm" asp-action="Edit" asp-controller="Role" asp-route-id="@role.Id">Update</a>
+                                    <button type="submit" class="btn btn-dark btn-sm" onclick="return confirm('Are you sure ??')">Delete</button>
+                                </form>
+
+                            </td>
+                        </tr>
+                    counter++;
+
+                }
+
+            }
+
+        </tbody>
+    </table>
+
+</div>
+    
+
+}
+else
+{
+    <div class=" col-12 my-5">
+
+        <div class="card">
+            <div class="card-header">
+                No roles created yet
+
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Use the button bellow to create role
+                </h5>
+            </div>
+        </div>
+    </div>
+
+}
+
+<div class="my-5 text-center">
+    <a asp-action="Create">Add New Role</a> |
+    <a asp-action="login" asp-controller="Account">Back to Home</a>
+</div>
+
+
+
+
+@section DTListRoles{
+    <script>
+        $(document).ready(function () {
+            $('#RolesTable').dataTable();
+        });
+
+
+    </script>
+
+}

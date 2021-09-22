@@ -1,0 +1,27 @@
+﻿@model Role
+
+@{
+
+    ViewBag.Title = "ReservationSYS  | New Role";
+
+}
+
+<div class="my-2 text-left col-12">
+    <h2> Create New Role</h2>
+    <hr />
+</div>
+
+<form class="mx-lg-auto my-5 w-50" method="post">
+
+    <div class="form-group">
+        <label asp-for="RoleName"></label>
+        <input class="form-control" asp-for="RoleName">
+        <span asp-validation-for="RoleName" hidden class="small text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Role</button>
+    <div class="text text-danger" asp-validation-summary="All"></div>
+</form>
+
+
+

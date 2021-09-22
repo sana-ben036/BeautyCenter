@@ -1,0 +1,51 @@
+﻿@model EditAccountViewModel
+
+@{
+
+    ViewBag.Title = "BeautyCenter | Edit Account";
+
+}
+
+<div class="my-5 text-left">
+    <h2> Edit Account Details </h2>
+    <hr />
+</div>
+
+
+<form class="mx-lg-auto w-50" asp-action="EditAccount" asp-controller="Account" method="post">
+
+    <input class="form-control" asp-for="Id" hidden>
+
+    
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input class="form-control" asp-for="FirstName">
+        <span asp-validation-for="FirstName" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input class="form-control" asp-for="LastName">
+        <span asp-validation-for="LastName" class="small text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="PhoneNumber"></label>
+        <input class="form-control" asp-for="PhoneNumber">
+        <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input class="form-control" asp-for="Password">
+        <span asp-validation-for="Password" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ConfirmPassword"></label>
+        <input class="form-control" asp-for="ConfirmPassword">
+        <span asp-validation-for="ConfirmPassword" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+    <div class="text text-danger" asp-validation-summary="All"></div>
+
+</form>

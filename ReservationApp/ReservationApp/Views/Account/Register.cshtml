@@ -1,0 +1,54 @@
+﻿@model Account
+
+@{
+
+    ViewBag.Title = "BeautyCenter  | Register";
+
+}
+
+
+<div class="row">
+    <div class="col-md-8 m-auto text-left  ">
+        <h1 class="text text-dark my-4 "> Registration Form </h1>
+        <hr />
+
+        <form class="mx-lg-auto mb-5 w-50" asp-action="Register" asp-controller="Account" method="post">
+            <div class="form-group">
+                <label asp-for="FirstName"></label>
+                <input class="form-control" asp-for="FirstName">
+                <span asp-validation-for="FirstName" class="small text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName"></label>
+                <input class="form-control" asp-for="LastName">
+                <span asp-validation-for="LastName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input class="form-control" asp-for="Email">
+                <span asp-validation-for="Email" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input class="form-control" asp-for="PhoneNumber">
+                <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input class="form-control" asp-for="Password">
+                <span asp-validation-for="Password" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input class="form-control" asp-for="ConfirmPassword">
+                <span asp-validation-for="ConfirmPassword" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+            <!--<div class="text text-danger" asp-validation-summary="All"></div>-->
+
+        </form>
+    </div>
+</div>

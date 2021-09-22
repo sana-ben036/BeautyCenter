@@ -1,0 +1,79 @@
+﻿@model AccountLoginViewModel
+
+@{
+
+    ViewBag.Title = "BeautyCenter  | Login";
+
+}
+
+
+<div class="row">
+    <div class="col-md-8 m-auto text-center">
+        <h1 class="text text-dark my-4  text-left">Login Portal</h1>
+        <hr />
+
+        <form class="mx-lg-auto w-50 m-auto" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div>
+                <button type="submit" class="btn btn-light  bg-danger text-white w-100"
+                        name="provider" value="Google"
+                        title="Login using your Google account">
+                    GOOGLE
+                </button><br /><br />
+            </div>
+            <div>
+                <button type="submit" class="btn btn-light  bg-primary text-white w-100"
+                        name="provider" value="Facebook"
+                        title="Login using your Facebook account">
+                    FACEBOOK
+                </button><br /><br />
+            </div>
+
+        </form>
+
+
+        @*@{
+            <form class="mx-lg-auto w-50 m-auto" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div>
+                    @foreach (var provider in Model.ExternalLogins)
+                    {
+                        <button type="submit" class="btn btn-primary w-100"
+                                name="provider" value="@provider.Name"
+                                title="Login using your @provider.DisplayName account">
+                            @provider.DisplayName
+                        </button><br /><br />
+                    }
+                </div>
+            </form>
+        }*@
+
+
+        <p>OR</p>
+        <p>--- Login with your Account ---</p>
+
+
+        <form class="mx-lg-auto w-50 m-auto" asp-action="Login" method="post">
+            <div class="text text-danger text-left" asp-validation-summary="All"></div>
+            <div class="form-group">
+                <input class="form-control" asp-for="Email" placeholder="Your Email ">
+                <span asp-validation-for="Email" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control" asp-for="Password" placeholder="Your Passowrd">
+                <span asp-validation-for="Password" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remember"></label>
+                <input class="custom-checkbox" asp-for="Remember">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+
+
+        </form>
+        <p>Do not have an account yet ? <a asp-action="Register" asp-controller="Account">Register Now</a></p>
+
+    </div>
+    
+
+</div>

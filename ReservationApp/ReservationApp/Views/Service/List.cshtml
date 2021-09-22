@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Service>
+
+@{
+    int counter = 1;
+    ViewBag.Title = "BeautyCenter | Service";
+}
+
+<div class="my-2 text-left col-12">
+    <h2> List of Services </h2>
+    <hr />
+</div>
+
+<div class="mx-lg-auto my-2 col-12 ">
+    <table id="ServiceTable" class="table table-hover text-center ">
+        <thead class="text-white" style="background-color:#44426B">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Service</th>
+                <th scope="col">Price</th>
+                <th scope="col">Agents</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var service in Model)
+                {
+                        <tr>
+                            <td>@counter</td>
+                            <td>@service.CreateDate.ToShortDateString()</td>
+                            <td>@service.Name</td>
+                            <td>@service.Price</td>
+                            <td>@service.Agents.Count</td>
+
+                            <td>
+
+                                <form method="post" asp-action="Delete" asp-controller="Service" asp-route-id="@service.Id">
+                                    <a class="btn btn-primary text-white btn-sm" asp-action="Edit" asp-controller="Service" asp-route-id="@service.Id">Update</a>
+                                    <button type="submit" class="btn btn-dark btn-sm" onclick="return confirm('Are you sure to Delete ??')">Delete</button>
+                                </form>
+
+
+                            </td>
+                        </tr>
+                    counter++;
+
+                }
+            }
+
+
+        </tbody>
+    </table>
+
+</div>
+
+
+<div class="my-5 text-center">
+    <a asp-action="Create">New Service</a> |
+    <a asp-action="login" asp-controller="Account">Back To Home</a>
+</div>
+
+@section DTListServices{
+    <script>
+        $(document).ready(function () {
+            $('#ServiceTable').dataTable();
+        });
+    </script>
+
+}

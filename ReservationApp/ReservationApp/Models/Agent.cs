@@ -12,9 +12,22 @@ namespace ReservationApp.Models
         public int Id { get; set; }
         public DateTime CreateDate { get; set; }
 
-        [Required(ErrorMessage = "The agent name field is required !")]
-        [Display(Name = "Enter The Name")]
-        public string Name { get; set; }
+        [Required(ErrorMessage = "The agent first name field is required !")]
+        [Display(Name = "Enter The First Name")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "The agent last name field is required !")]
+        [Display(Name = "Enter The Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        public string PhoneNumber { get; set; }
+
+        public string Adress { get; set; }
 
         [Required(ErrorMessage = "The service field is required !")]
         [Display(Name = "Service")]

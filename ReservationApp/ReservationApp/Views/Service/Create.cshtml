@@ -1,0 +1,62 @@
+﻿@model ServiceCreateViewModel
+
+@{
+
+    ViewBag.Title = "BeautyCenter | New Service";
+
+}
+
+
+<div class="my-2 text-left col-12">
+    <h2> Create New Service</h2>
+    <hr />
+</div>
+
+<form enctype="multipart/form-data" class="mx-lg-auto my-5 w-50" asp-action="Create" asp-controller="Service" method="post">
+    <input hidden class="form-control" type="datetime" asp-for="CreateDate" value="@DateTime.Now">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input type="text" class="form-control" asp-for="Name">
+        <span asp-validation-for="Name" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input type="number" class="form-control" asp-for="Price">
+        <span asp-validation-for="Price" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Details"></label>
+        <textarea type="text" class="form-control" asp-for="Details"></textarea>
+        <span asp-validation-for="Details" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image"></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupeFileAdd01">Upload</span>
+
+            </div>
+            <div class="custom-file">
+                <input asp-for="Image" accept="image/*" class="custom-file-input" id="inputGroupeFile01" />
+                <label class="custom-file-label" for="inputGroupeFile01">Choose File...</label>
+            </div>
+
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Add Service</button>
+</form>
+
+@section CreateSectionJs{ 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#inputGroupeFile01").on("change", function () {
+            var inputImage = $(this).val().split("\\").pop();
+            $(this).next(".custom-file-label").html(inputImage);
+        })
+        
+    })
+
+</script>
+}

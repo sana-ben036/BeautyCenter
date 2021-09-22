@@ -21,13 +21,20 @@ using ReservationApp.Models;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\Views\_ViewImports.cshtml"
+using ReservationApp.Models.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\youcode\source\repos\sana-ben036\BeautyCenter\ReservationApp\ReservationApp\Views\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0e581570cabb5e252cb3cc15bad025907592ecac", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d7236b5d2672ea07471874ab52cfd97057942b98", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7e3c43c9acfc40790d37fb04959f634b8d1aa35c", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

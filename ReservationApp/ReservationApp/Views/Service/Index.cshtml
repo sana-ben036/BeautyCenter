@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Service>
+
+@{
+
+    ViewBag.Title = "BeautyCenter | Services";
+
+}
+
+<div class="my-5 text-center">
+    <h2> Owr Services</h2>
+</div>
+
+<div class="row my-5 ">
+    @foreach (Service service in Model)
+    {
+        var imagePathName = "/images/" + (service.ImagePath == null ? "service.jpg" : service.ImagePath);
+        <div class="col-12 col-md-4 mb-2 col-lg-4 ">
+            <div class="card" style="width: 15rem; margin:auto">
+                <img asp-append-version="true" class="card-img-top" src="@imagePathName" alt="@service.ImagePath">
+                <div class="card-body text-center">
+                    <h5 class="card-title">@service.Name</h5>
+                    <p class="card-text">@service.Price</p>
+                    <p class="card-text">@service.Details</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

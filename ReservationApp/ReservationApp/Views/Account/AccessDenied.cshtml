@@ -1,0 +1,18 @@
+﻿@{ 
+    ViewBag.Title = "Access Denied";
+}
+
+<div class="my-5">
+    <div class="card text-center">
+        <div class="card-header">
+            <span class="display-4">@ViewBag.Message</span>
+        </div>
+        <div class="card-body">
+            <img src="~/images/access-denied.png" asp-append-version="true" />
+        </div>
+        <div class="card-footer">
+            <a asp-action="index" asp-controller="Student" >Back to Home</a>
+
+        </div>
+    </div>
+</div>

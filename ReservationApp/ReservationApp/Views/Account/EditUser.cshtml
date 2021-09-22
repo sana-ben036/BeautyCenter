@@ -1,0 +1,101 @@
+﻿@model AccountEditUserViewModel
+
+@{
+    ViewBag.Title = "BeautyCenter |Edit User";
+}
+
+<div class="my-5 text-left">
+    <h2> Edit User Details </h2>
+    <hr />
+</div>
+
+<form class="mx-lg-auto w-50" method="post">
+
+    <div class="form-group">
+        <label asp-for="Id"></label>
+        <input class="form-control" disabled asp-for="Id">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input class="form-control" asp-for="FirstName">
+        <span asp-validation-for="FirstName" hidden class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input class="form-control" asp-for="LastName">
+        <span asp-validation-for="LastName" hidden class="small text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhoneNumber"></label>
+        <input class="form-control" asp-for="PhoneNumber">
+        <span asp-validation-for="PhoneNumber" hidden class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input class="form-control" asp-for="Email">
+        <span asp-validation-for="Email" hidden class="small text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-sm my-auto btn-success">Update</button>
+        <a class="btn btn-sm my-auto btn-dark" asp-action="ListUsers">Back to list</a>
+    </div>
+    <div class="text text-danger" asp-validation-summary="All"></div>
+
+    @*list roles*@
+    <div class="my-4">
+        <div class="card" style=" margin:auto">
+            <div class="card-body text-center">
+                <h5 class="card-title">User Roles</h5>
+
+                @if (Model.Roles.Count == 0)
+                {
+                    <p class="card-text">Any Roles</p>
+                }
+                else
+                {
+                    <p class="card-text">
+                        @foreach (string role in Model.Roles)
+                        {
+                            @role <br />
+                        }
+                    </p>
+                }
+                <div>
+                    <a class="btn btn-sm btn-primary" asp-action="ListRoles" asp-controller="Role">Manage Roles</a>
+                    <a class="btn btn-sm my-auto btn-secondary" asp-action="ListUsers">Back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*list claims*@
+
+    <div class="my-4">
+        <div class="card" style=" margin:auto">
+            <div class="card-body text-center">
+                <h5 class="card-title">User Claims</h5>
+
+                @if (Model.Claims.Count == 0)
+                {
+                    <p class="card-text">Any Claims</p>
+                }
+                else
+                {
+                    <p class="card-text">
+                        @foreach (string claim in Model.Claims)
+                        {
+                            @claim <br />
+                        }
+                    </p>
+                }
+                <div>
+                    <a class="btn btn-sm btn-primary" asp-action="ListClaims" asp-controller="Role">Manage Claims</a>
+                    <a class="btn btn-sm my-auto btn-secondary" asp-action="ListUsers">Back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

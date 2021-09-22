@@ -1,0 +1,15 @@
+﻿@model string
+@{ 
+    ViewBag.Title = "Error" + ViewBag.Error;
+}
+
+<div class=" my-5">
+    <h1 class="display-4 text-danger">For More Information Contact Us</h1>
+    <p class="lead">
+        @Model
+
+    </p>
+    <hr class="my-4" />
+    <a  asp-action="Index">Back To Roles </a>
+
+</div>
