@@ -10,7 +10,7 @@
 
 
 <div class="my-2 text-left col-12">
-    <h2> Create New Service</h2>
+    <h2> Update Service</h2>
     <hr />
 </div>
 
@@ -21,17 +21,17 @@
 
     <div class="form-group">
         <label asp-for="Name"></label>
-        <input type="text" class="form-control" asp-for="Name">
+        <input class="form-control" asp-for="Name">
         <span asp-validation-for="Name" class="small text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Price"></label>
-        <input type="number" class="form-control" asp-for="Price">
+        <input class="form-control" asp-for="Price">
         <span asp-validation-for="Price" class="small text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Details"></label>
-        <textarea type="text" class="form-control" asp-for="Details"></textarea>
+        <textarea class="form-control" asp-for="Details"></textarea>
         <span asp-validation-for="Details" class="small text-danger"></span>
     </div>
     <div class="form-group">

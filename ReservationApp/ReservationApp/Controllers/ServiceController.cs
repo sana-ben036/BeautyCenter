@@ -57,10 +57,26 @@ namespace ReservationApp.Controllers
                 string uniqueFileName = null;
                 if(model.Image != null)
                 {
+                    string extFile = Path.GetExtension(model.Image.FileName);
+                    if (extFile != ".jpg" && extFile != ".png")
+                    {
+                        ModelState.AddModelError(" ", "Invalid File Format");
+                        return View(model);
+                    }
                     string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
                     uniqueFileName = Guid.NewGuid()+"_"+model.Image.FileName;
                     string path = Path.Combine(uploadsFolder, uniqueFileName); //wwwroot/images/5656788889999nails.jpg
-                    model.Image.CopyTo(new FileStream(path, FileMode.Create));
+                    
+                    // destroy the file (image service)
+                    using(var fileStream = new FileStream (path, FileMode.Create))
+                    {
+                        model.Image.CopyTo(fileStream);
+
+                    }
+
+                  
+
+
                 }
 
                 Service service = new Service()
@@ -105,19 +121,54 @@ namespace ReservationApp.Controllers
             return View(model);
         }
 
-        // POST: ServiceController/Edit/5
+        // POST: ServiceController/Edit
         [HttpPost]
-        public ActionResult Edit(int id, Service service)
+        public ActionResult Edit(ServiceEditViewModel model)
         {
             if (ModelState.IsValid)
             {
+                Service service = _context.Services.Find(model.Id);
+                service.Name = model.Name;
+                service.Price = model.Price;
+                service.Details = model.Details;
+               
 
-                _context.Entry(service).State = EntityState.Modified;
+                string uniqueFileName = null;
+                if (model.Image != null)
+                {
+                    string extFile = Path.GetExtension(model.Image.FileName);
+                    if(extFile != ".jpg" && extFile != ".png")
+                    {
+                        ModelState.AddModelError(" ", "Invalid File Format");
+                        return View(model);
+                    }
+                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                    uniqueFileName = Guid.NewGuid() + "_" + model.Image.FileName;
+                    string path = Path.Combine(uploadsFolder, uniqueFileName); //wwwroot/images/5656788889999nails.jpg
+                    // destroy the file (image service)
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        model.Image.CopyTo(fileStream);
+
+                    }
+
+                    // delete old image from wwwroot/images
+
+                    if (service.ImagePath != null)
+                    {
+                        string oldImageService = Path.Combine(_hostingEnvironment.WebRootPath, "images", service.ImagePath);
+                        System.IO.File.Delete(oldImageService);
+                    }
+                    service.ImagePath = uniqueFileName;
+                }
+
+             
+                _context.Services.Update(service);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
-
+                return RedirectToAction("Index");
             }
-            return View(service);
+            return View(model);
+
         }
 
         // GET: ServiceController/Delete/5
