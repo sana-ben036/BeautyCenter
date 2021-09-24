@@ -12,7 +12,9 @@ using System.Threading.Tasks;
 
 namespace ReservationApp.Controllers
 {
-    [Authorize(Roles = "Admin,User")]
+    //[Authorize(Roles = "Admin,User")]
+    [AllowAnonymous]
+
     public class ServiceController : Controller
     {
         private readonly AppDbContext _context;
@@ -26,8 +28,15 @@ namespace ReservationApp.Controllers
 
 
         [AllowAnonymous]
-        // GET: ServiceController
+        // GET: ServiceController/Index
         public ActionResult Index()
+        {
+            var services = _context.Services.ToList();
+            return View(services);
+        }
+
+        // GET: ServiceController/List
+        public ActionResult List()
         {
             var services = _context.Services.ToList();
             return View(services);

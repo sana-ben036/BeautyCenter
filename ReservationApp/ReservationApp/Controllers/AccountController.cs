@@ -74,7 +74,7 @@ namespace ReservationApp.Controllers
                     }
                     await signInManager.SignInAsync(user, isPersistent: false);
 
-                    return RedirectToAction("Index", "Service");
+                    return RedirectToAction("index", "Service");
                 }
                 foreach (IdentityError error in result.Errors)
                 {

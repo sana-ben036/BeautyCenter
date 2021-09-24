@@ -50,8 +50,8 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark  ">
 
-            <a class="navbar-brand" asp-action="index" asp-controller="Student">
-                <img asp-append-version="true" src="~/images/z.jpg" class="rounded-circle" width="60px" height="60px">
+            <a class="navbar-brand" asp-action="index" asp-controller="Service">
+                <img asp-append-version="true" src="~/images/B3.png" class="align-self-md-center" >
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,31 +61,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-                    @if (signInManager.IsSignedIn(User))
-                    {
-                        AppUser user = await userManager.FindByEmailAsync(User.Identity.Name);
-
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Account</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-route-id="@user.Id" asp-action="EditAccount" asp-controller="Account">Edit</a>
-                                <div>
-                                    <ul class="navbar nav">
-                                        <li class="nav-item ">
-                                            <form asp-action="Logout" asp-controller="Account" method="post">
-                                                <button type="submit" class="btn btn-primary text-white" style="width:10em">
-                                                    Logout
-                                                </button>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <hr />
-                        </li>
-
-                    }
+          
 
                     @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
@@ -93,7 +69,7 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Manage Reservations</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-action="Index" asp-controller="Reservation">Reservations</a>
-                                <a class="dropdown-item" asp-action="Index" asp-controller="Service">Services</a>
+                                <a class="dropdown-item" asp-action="List" asp-controller="Service">Services</a>
                                 <a class="dropdown-item" asp-action="Index" asp-controller="Agent">Agents</a>
                             </div>
                         </li>
@@ -104,7 +80,7 @@
                             <hr />
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-action="Index" asp-controller="Role">Roles</a>
-                                <a class="dropdown-item" asp-action="Index" asp-controller="Account">Users</a>
+                                <a class="dropdown-item" asp-action="ListUsers" asp-controller="Account">Users</a>
                             </div>
                         </li>
 
@@ -144,19 +120,7 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">@user.Email</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-route-id="@user.Id" asp-action="EditAccount" asp-controller="Account">Edit Account</a>
-                                <div>
-                                    <ul class="navbar nav">
-                                        <li class="nav-item ">
-                                            <form asp-action="Logout" asp-controller="Account" method="post">
-                                                <button type="submit" class="btn btn-dark text-white" style="width:10em">
-                                                    Logout
-                                                </button>
-
-                                            </form>
-                                        </li>
-
-                                    </ul>
-                                </div>
+                                <a class="dropdown-item" asp-route-id="@user.Id" asp-action="Logout" asp-controller="Account">Logout</a>               
                             </div>
 
                         </li>
