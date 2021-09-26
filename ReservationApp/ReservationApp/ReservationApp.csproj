@@ -20,8 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Agent\" />
-    <Folder Include="Views\Reservation\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

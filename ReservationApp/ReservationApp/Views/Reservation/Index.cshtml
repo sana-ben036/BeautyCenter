@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Reservation>
+
+
+@{
+    int counter = 1;
+    ViewBag.Title = "BeautyCenter  | Reservations";
+}
+
+<div class="my-2 text-left col-12">
+    <h2> List of Reservations </h2>
+    <hr />
+</div>
+
+<div class="mx-lg-auto my-2 col-12 ">
+    <table id="ReservationsTable" class="table table-hover text-center">
+        <thead class="text-white" style="background-color:#44426B">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Reserved Day</th>
+                <th scope="col">Service</th>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <th scope="col">User</th>
+                    <th scope="col">NRA</th>
+                }
+
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var reservation in Model)
+                {
+                    <tr>
+                        <td>@counter</td>
+                        <td>@reservation.BookingDate.ToShortDateString()</td>
+                        <td>@reservation.Service.Name</td>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td>@reservation.User.FirstName @reservation.User.LastName </td>
+                            <td>@reservation.User.NRA</td>
+                        }
+
+                        @if (reservation.Status == Status.Pending)
+                        {
+                            <td class="text-primary">@reservation.Status</td>
+                        }
+                        @if (reservation.Status == Status.Canceled)
+                        {
+                            <td class="text-danger">@reservation.Status</td>
+                        }
+                        @if (reservation.Status == Status.Confirmed)
+                        {
+                            <td class="text-success">@reservation.Status</td>
+                        }
+
+
+
+                        @if (reservation.Status == Status.Pending || User.IsInRole("Admin"))
+                        {
+                            <td>
+
+                                <form method="post" asp-action="Delete" asp-controller="Reservation" asp-route-id="@reservation.Id">
+                                    <a class="btn btn-primary text-white btn-sm" asp-action="Edit" asp-controller="Reservation" asp-route-id="@reservation.Id">Update</a>
+                                    <button type="submit" class="btn btn-dark btn-sm" onclick="return confirm('Are you sure to Delete ??')">Delete</button>
+                                </form>
+
+
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+
+                                _
+
+
+                            </td>
+                        }
+
+                    </tr>
+                    counter++;
+
+                }
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+
+@if (User.IsInRole("User"))
+{
+    <div class="my-5 text-center">
+        <a asp-action="Create">New Reservation</a> |
+        <a asp-controller="Service" asp-action="Index">Back To Home</a>
+    </div>
+}
+else
+{
+    <div class="my-5 text-center">
+        <a asp-controller="Service" asp-action="Index">Back To Home</a>
+    </div>
+}
+
+
+
+
+@section DTListReservations{
+    <script>
+        $(document).ready(function () {
+            $('#ReservationsTable').dataTable();
+        });
+
+
+    </script>
+
+}

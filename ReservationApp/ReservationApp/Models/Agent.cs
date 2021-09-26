@@ -11,6 +11,7 @@ namespace ReservationApp.Models
         [Key]
         public int Id { get; set; }
         public DateTime CreateDate { get; set; }
+        public bool IsActive { get; set; }
 
         [Required(ErrorMessage = "The agent first name field is required !")]
         [Display(Name = "Enter The First Name")]

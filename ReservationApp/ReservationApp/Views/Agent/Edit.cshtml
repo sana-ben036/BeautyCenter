@@ -1,0 +1,68 @@
+﻿
+@model Agent
+
+@{
+
+    ViewBag.Title = "BeautyCenter  | Edit Agent";
+
+}
+
+<div class="my-2 text-left col-12">
+    <h2> Update Agent </h2>
+    <hr />
+</div>
+
+<form class="mx-lg-auto my-5 w-50" asp-action="Edit" asp-controller="Agent" method="post">
+    <input hidden asp-for="CreateDate">
+    <input hidden asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input class="form-control" asp-for="FirstName">
+        <span asp-validation-for="FirstName" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input class="form-control" asp-for="LastName">
+        <span asp-validation-for="LastName" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input class="form-control" asp-for="Email">
+        <span asp-validation-for="Email" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber"></label>
+        <input class="form-control" asp-for="PhoneNumber">
+        <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Adress"></label>
+        <input type="text" class="form-control" asp-for="Adress">
+    </div>
+    <div class="form-group">
+        <label asp-for="ServiceId"></label>
+        <select asp-for="ServiceId" class="form-control">
+            <option value="">@Model.Service.Name</option>
+            @foreach (Service service in ViewBag.Services)
+            {
+                <option value="@service.Id">@service.Name</option>
+            }
+
+        </select>
+        <span asp-validation-for="Service" class="small text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="checkbox" class="form-check-input" asp-for="IsActive">
+        <label class="form-check-label" asp-for="IsActive"></label>
+    </div>
+
+
+
+
+
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <div class="text text-danger" hidden asp-validation-summary="All"></div>
+
+
+</form>

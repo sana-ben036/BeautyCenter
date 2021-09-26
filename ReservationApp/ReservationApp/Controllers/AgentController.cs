@@ -9,9 +9,12 @@ using System.Threading.Tasks;
 
 namespace ReservationApp.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   // [Authorize(Roles = "Admin")]
+    [AllowAnonymous]
     public class AgentController : Controller
     {
+        
+
         private readonly AppDbContext _context;
 
         public AgentController(AppDbContext context)
@@ -22,36 +25,70 @@ namespace ReservationApp.Controllers
         // GET: AgentController
         public ActionResult Index()
         {
-            var agents = _context.Agents.Include(a => a.Service).ToList().OrderBy(a => a.Service);
+            IEnumerable<Agent> agents = _context.Agents.Include(a => a.Service).ToList();
             return View(agents);
         }
 
-        // GET: AgentController/Details/5
-        public ActionResult Details(int id)
+        // GET: AgentController/Delete/5
+        public ActionResult Delete()
         {
-            var agent = _context.Agents.Find(id);
-
-            return View(agent);
+            return RedirectToAction("Index");
         }
+
+        // POST: AgentController/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int? id)
+        {
+            
+            
+            var agent = _context.Agents.Find(id);
+            
+            if (agent is null)
+            {
+                return View("../Error/NotFound", $"The Agent Id : {id} cannot be found");
+            }
+            var idService = agent.ServiceId;
+            var service = _context.Services.Find(idService);
+
+            if(agent.IsActive == true && service.TotalAgentsActif>0)
+            {
+                service.TotalAgentsActif--;
+                _context.SaveChanges();
+            }
+
+            _context.Remove(agent);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // GET: AgentController/Create
         public IActionResult Create()
         {
             var agent = new Agent();
-            IEnumerable<Service> services = _context.Services.ToList(); // pour charger les services et les afficher sur input select
+            var services = _context.Services.ToList(); // pour charger les services et les afficher sur input select
             ViewBag.Services = services;
 
             return View(agent);
         }
 
         // POST: AgentController/Create
-
+        
         [HttpPost]
         public IActionResult Create(Agent agent)
         {
+            var idService = agent.ServiceId;
+            var service = _context.Services.Find(idService);
+
             if (ModelState.IsValid)
             {
                 _context.Agents.Add(agent);
+                if (agent.IsActive == true)
+                {
+                    service.TotalAgentsActif++;
+                    _context.SaveChanges();
+                }
+                
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
@@ -60,6 +97,7 @@ namespace ReservationApp.Controllers
             ViewBag.Services = services;
             return View(agent);
         }
+
 
         // GET: AgentController/Edit/5
         public ActionResult Edit(int? id)
@@ -83,20 +121,34 @@ namespace ReservationApp.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Agent agent)
         {
-
             
             var idService = agent.ServiceId;
             var service = _context.Services.Find(idService);
+            var status = agent.IsActive;
 
 
             if (ModelState.IsValid)
             {
 
+                
+
+                if (agent.IsActive != status)
+                {
+                    if(agent.IsActive == true)
+                    {
+                        service.TotalAgentsActif++;
+                        _context.Entry(agent).State = EntityState.Modified;
+                        _context.SaveChanges();
+                    }
+                    else
+                    {
+                        service.TotalAgentsActif--;
+                        _context.Entry(agent).State = EntityState.Modified;
+                        _context.SaveChanges();
+                    }
+                }
                 _context.Entry(agent).State = EntityState.Modified;
-
-
                 _context.SaveChanges();
-
                 return RedirectToAction(nameof(Index));
 
             }

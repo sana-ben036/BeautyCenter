@@ -23,6 +23,8 @@ namespace ReservationApp.Models
 
         public int Price { get; set; }
 
+        public int TotalAgentsActif { get; set; }
+
         public virtual IList<Agent> Agents { get; set; }
         public virtual IList<Reservation> Reservations { get; set; }
     }

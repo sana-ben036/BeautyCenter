@@ -20,5 +20,6 @@ namespace ReservationApp.Models.ViewModels
         public IFormFile Image { get; set; }
 
         public int Price { get; set; }
+        public int TotalAgentsActif { get; set; }
     }
 }

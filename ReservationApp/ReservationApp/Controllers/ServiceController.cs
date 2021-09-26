@@ -31,14 +31,14 @@ namespace ReservationApp.Controllers
         // GET: ServiceController/Index
         public ActionResult Index()
         {
-            var services = _context.Services.ToList();
+            IEnumerable<Service> services = _context.Services.ToList();
             return View(services);
         }
 
         // GET: ServiceController/List
         public ActionResult List()
         {
-            var services = _context.Services.ToList();
+            IEnumerable<Service> services = _context.Services.ToList();
             return View(services);
         }
 
@@ -93,6 +93,7 @@ namespace ReservationApp.Controllers
                     Name = model.Name,
                     Price = model.Price,
                     Details = model.Details,
+                    //TotalAgentsActif=model.TotalAgentsActif,
                     ImagePath = uniqueFileName
 
                 };
