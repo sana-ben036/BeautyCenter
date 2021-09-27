@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,8 +17,12 @@ namespace ReservationApp.Models
         [Required(ErrorMessage = "The Date field is required !")]
         [Display(Name = "Date of Reservation")]
         public DateTime BookingDate { get; set; }
+
+        [Required(ErrorMessage = "The Time field is required !")]
+        [Display(Name = "Time of Reservation")]
+        public TimeSpan BookingTime { get; set; }
         public Status Status { get; set; }
-        
+
         public string UserId { get; set; }
         public virtual AppUser User { get; set; }
 
@@ -25,5 +30,9 @@ namespace ReservationApp.Models
         [Display(Name = "Service")]
         public int ServiceId { get; set; }
         public virtual Service Service { get; set; }
+
+      
+    
+
     }
 }

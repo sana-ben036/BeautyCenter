@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ReservationApp.Models;
 using System;
@@ -10,15 +11,17 @@ using System.Threading.Tasks;
 
 namespace ReservationApp.Controllers
 {
-    [Authorize(Roles = "Admin,User")]
+    [Authorize]
     public class ReservationController : Controller
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> userManager;
-        public ReservationController(AppDbContext context, UserManager<AppUser> userManager)
+        private readonly SignInManager<AppUser> signInManager;
+        public ReservationController(AppDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _context = context;
             this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
 
@@ -29,7 +32,7 @@ namespace ReservationApp.Controllers
         {
 
 
-            if (User.IsInRole("User"))
+            if (signInManager.IsSignedIn(User) && !User.IsInRole("Admin"))
             {
                 AppUser user = await userManager.FindByEmailAsync(User.Identity.Name);
                 var reservations = _context.Reservations.Include(r => r.Service).ToList().Where(r => r.UserId == user.Id).OrderBy(r => r.Status); // include pour afficher le nom de type d'objet type
@@ -67,11 +70,22 @@ namespace ReservationApp.Controllers
         [HttpPost]
         public IActionResult Create(Reservation reservation)
         {
+            var idService = reservation.ServiceId;
+            var service = _context.Services.Find(idService);
+
             if (ModelState.IsValid)
             {
                 _context.Reservations.Add(reservation);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+
+                if(service.TotalReservConfirm < service.TotalAgentsActif)
+                {
+                    _context.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return View("../Error/NotFound", "There is no Agent avalaible ");
+                }
             }
 
             ViewBag.UserId = userManager.GetUserId(HttpContext.User);
@@ -157,6 +171,8 @@ namespace ReservationApp.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
+        
 
 
 

@@ -31,7 +31,7 @@ namespace ReservationApp.Controllers
         // GET: ServiceController/Index
         public ActionResult Index()
         {
-            IEnumerable<Service> services = _context.Services.ToList();
+            var services = _context.Services.ToList();
             return View(services);
         }
 

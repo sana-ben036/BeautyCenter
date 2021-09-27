@@ -74,7 +74,7 @@ namespace ReservationApp.Controllers
                     }
                     await signInManager.SignInAsync(user, isPersistent: false);
 
-                    return RedirectToAction("index", "Service");
+                    return RedirectToAction("Index", "Service");
                 }
                 foreach (IdentityError error in result.Errors)
                 {
@@ -91,7 +91,7 @@ namespace ReservationApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("index", "Service");
+            return RedirectToAction("Index", "Service");
         }
 
 
@@ -113,7 +113,7 @@ namespace ReservationApp.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("index", "Service");
+                        return RedirectToAction("Index", "Service");
                     }
 
                 }
@@ -145,7 +145,7 @@ namespace ReservationApp.Controllers
                     return View(model);
                 }
             }
-            return RedirectToAction("index", "Service");
+            return RedirectToAction("Index", "Service");
         }
 
 
@@ -168,7 +168,7 @@ namespace ReservationApp.Controllers
                     IdentityResult result = await userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("index", "Service");
+                        return RedirectToAction("Index", "Service");
                     }
                     foreach (IdentityError error in result.Errors)
                     {

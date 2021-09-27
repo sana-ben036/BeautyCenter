@@ -17,12 +17,12 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Reserved Day</th>
+                <th scope="col">Reserved Time</th>
                 <th scope="col">Service</th>
 
                 @if (User.IsInRole("Admin"))
                 {
                     <th scope="col">User</th>
-                    <th scope="col">NRA</th>
                 }
 
                 <th scope="col">Status</th>
@@ -33,55 +33,55 @@
             @{
                 foreach (var reservation in Model)
                 {
-                    <tr>
-                        <td>@counter</td>
-                        <td>@reservation.BookingDate.ToShortDateString()</td>
-                        <td>@reservation.Service.Name</td>
+                        <tr>
+                            <td>@counter</td>
+                            <td>@reservation.BookingDate.ToShortDateString()</td>
+                            <td>@reservation.BookingTime.ToString()</td>
+                            <td>@reservation.Service.Name</td>
 
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <td>@reservation.User.FirstName @reservation.User.LastName </td>
-                            <td>@reservation.User.NRA</td>
-                        }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <td>@reservation.User.Email </td>
+                            }
 
-                        @if (reservation.Status == Status.Pending)
-                        {
-                            <td class="text-primary">@reservation.Status</td>
-                        }
-                        @if (reservation.Status == Status.Canceled)
-                        {
-                            <td class="text-danger">@reservation.Status</td>
-                        }
-                        @if (reservation.Status == Status.Confirmed)
-                        {
-                            <td class="text-success">@reservation.Status</td>
-                        }
-
-
-
-                        @if (reservation.Status == Status.Pending || User.IsInRole("Admin"))
-                        {
-                            <td>
-
-                                <form method="post" asp-action="Delete" asp-controller="Reservation" asp-route-id="@reservation.Id">
-                                    <a class="btn btn-primary text-white btn-sm" asp-action="Edit" asp-controller="Reservation" asp-route-id="@reservation.Id">Update</a>
-                                    <button type="submit" class="btn btn-dark btn-sm" onclick="return confirm('Are you sure to Delete ??')">Delete</button>
-                                </form>
+                            @if (reservation.Status == Status.Pending)
+                            {
+                                <td class="text-primary">@reservation.Status</td>
+                            }
+                            @if (reservation.Status == Status.Canceled)
+                            {
+                                <td class="text-danger">@reservation.Status</td>
+                            }
+                            @if (reservation.Status == Status.Confirmed)
+                            {
+                                <td class="text-success">@reservation.Status</td>
+                            }
 
 
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
 
-                                _
+                            @if (reservation.Status == Status.Pending || User.IsInRole("Admin"))
+                            {
+                                <td>
+
+                                    <form method="post" asp-action="Delete" asp-controller="Reservation" asp-route-id="@reservation.Id">
+                                        <a class="btn btn-primary text-white btn-sm" asp-action="Edit" asp-controller="Reservation" asp-route-id="@reservation.Id">Update</a>
+                                        <button type="submit" class="btn btn-dark btn-sm" onclick="return confirm('Are you sure to Delete ??')">Delete</button>
+                                    </form>
 
 
-                            </td>
-                        }
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
 
-                    </tr>
+                                    _
+
+
+                                </td>
+                            }
+
+                        </tr>
                     counter++;
 
                 }

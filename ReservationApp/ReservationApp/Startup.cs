@@ -26,12 +26,14 @@ namespace ReservationApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("SQLConnection"))); // connectiondb
-            services.AddIdentity<AppUser, IdentityRole>(options => 
+            services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 3;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
+
             }
+           
 
                 ).AddEntityFrameworkStores<AppDbContext>();
             services.AddMvc(options =>

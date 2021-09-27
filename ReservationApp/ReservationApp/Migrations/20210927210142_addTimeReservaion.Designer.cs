@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReservationApp.Models;
 
 namespace ReservationApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210927210142_addTimeReservaion")]
+    partial class addTimeReservaion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -276,8 +278,8 @@ namespace ReservationApp.Migrations
                     b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan>("BookingTime")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("BookingTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
