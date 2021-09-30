@@ -15,7 +15,7 @@
 {
 <div class="mx-lg-auto my-5 col-12 ">
     <table id="RolesTable" class="table table-hover text-center ">
-        <thead class="text-white" style="background-color:#44426B">
+        <thead class="alert-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">@Html.DisplayNameFor(item => item.Id)</th>
@@ -34,8 +34,8 @@
 
                             <td>
                                 <form method="post" asp-action="Delete" asp-controller="Role" asp-route-id="@role.Id">
-                                    <a class="btn btn-primary text-white btn-sm" asp-action="Edit" asp-controller="Role" asp-route-id="@role.Id">Update</a>
-                                    <button type="submit" class="btn btn-dark btn-sm" onclick="return confirm('Are you sure ??')">Delete</button>
+                                    <a class="btn btn-warning text-white btn-sm" asp-action="Edit" asp-controller="Role" asp-route-id="@role.Id">Update</a>
+                                    <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure ??')">Delete</button>
                                 </form>
 
                             </td>
@@ -74,7 +74,7 @@ else
 
 <div class="my-5 text-center">
     <a asp-action="Create">Add New Role</a> |
-    <a asp-action="login" asp-controller="Account">Back to Home</a>
+    <a asp-action="Index" asp-controller="Service">Back to Home</a>
 </div>
 
 

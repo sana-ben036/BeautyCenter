@@ -28,9 +28,9 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="PhoneNumber"></label>
-        <input class="form-control" asp-for="PhoneNumber">
-        <span asp-validation-for="PhoneNumber" hidden class="small text-danger"></span>
+        <label asp-for="Phone"></label>
+        <input class="form-control" asp-for="Phone">
+        <span asp-validation-for="Phone" hidden class="small text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Email"></label>
@@ -64,7 +64,7 @@
                     </p>
                 }
                 <div>
-                    <a class="btn btn-sm btn-primary" asp-action="ListRoles" asp-controller="Role">Manage Roles</a>
+                    <a class="btn btn-sm btn-primary" asp-action="Index" asp-controller="Role">Manage Roles</a>
                     <a class="btn btn-sm my-auto btn-secondary" asp-action="ListUsers">Back to list</a>
                 </div>
             </div>
@@ -73,7 +73,7 @@
 
     @*list claims*@
 
-    <div class="my-4">
+    <!--<div class="my-4">
         <div class="card" style=" margin:auto">
             <div class="card-body text-center">
                 <h5 class="card-title">User Claims</h5>
@@ -97,5 +97,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 </form>

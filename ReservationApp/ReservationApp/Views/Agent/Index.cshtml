@@ -12,7 +12,7 @@
 
 <div class="mx-lg-auto my-2 col-12 ">
     <table id="AgentTable" class="table table-hover text-center ">
-        <thead class="text-white" style="background-color:burlywood">
+        <thead class="alert-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">FirstName</th>
@@ -36,8 +36,8 @@
                             <td>
 
                                 <form method="post" asp-action="Delete" asp-controller="Agent" asp-route-id="@agent.Id">
-                                    <a class="btn btn-info text-white btn-sm" asp-action="Edit" asp-controller="Agent" asp-route-id="@agent.Id">Update</a>
-                                    <button type="submit" class="btn btn-dark btn-sm" onclick="return confirm('Are you sure to Delete ??')">Delete</button>
+                                    <a class="btn btn-warning text-white btn-sm" asp-action="Edit" asp-controller="Agent" asp-route-id="@agent.Id">Update</a>
+                                    <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure to Delete ??')">Delete</button>
                                 </form>
 
 

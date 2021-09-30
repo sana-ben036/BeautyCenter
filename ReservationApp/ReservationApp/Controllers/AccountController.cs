@@ -60,7 +60,7 @@ namespace ReservationApp.Controllers
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    PhoneNumber = model.PhoneNumber,
+                    PhoneNumber = model.Phone,
                     UserName = model.Email,
                     Email = model.Email
                 };
@@ -137,7 +137,7 @@ namespace ReservationApp.Controllers
                     {
                         FirstName = user.FirstName,
                         LastName = user.LastName,
-                        PhoneNumber = user.PhoneNumber,
+                        Phone = user.PhoneNumber,
                         Id = user.Id,
                         Password = user.PasswordHash,
                         ConfirmPassword = user.PasswordHash
@@ -159,7 +159,7 @@ namespace ReservationApp.Controllers
                 {
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
-                    user.PhoneNumber = model.PhoneNumber;
+                    user.Phone = model.Phone;
 
                     var PasswordHash = userManager.PasswordHasher.HashPassword(user, model.Password);
                     user.PasswordHash = PasswordHash;
@@ -314,7 +314,7 @@ namespace ReservationApp.Controllers
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                PhoneNumber = user.PhoneNumber,
+                Phone = user.PhoneNumber,
                 Id = user.Id,
                 Email = user.Email,
                 Roles = userRoles,
@@ -338,7 +338,7 @@ namespace ReservationApp.Controllers
 
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
-                user.PhoneNumber = model.PhoneNumber;
+                user.PhoneNumber = model.Phone;
                 user.Email = model.Email;
 
 

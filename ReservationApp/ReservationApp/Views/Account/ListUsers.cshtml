@@ -16,7 +16,7 @@
             <th scope="col">#</th>
             <th scope="col">@Html.DisplayNameFor(item => item.FirstName)</th>
             <th scope="col">@Html.DisplayNameFor(item => item.LastName)</th>
-            <th scope="col">@Html.DisplayNameFor(item => item.PhoneNumber)</th>
+            <th scope="col">@Html.DisplayNameFor(item => item.Phone)</th>
             <th scope="col">@Html.DisplayNameFor(item => item.Email)</th>
             <th scope="col">Actions</th>
         </tr>
@@ -49,7 +49,7 @@
 
 <div class="my-5 text-center">
     <a  asp-action="Register">Add User</a> |
-    <a  asp-action="index" asp-controller="student">Back to Home</a>
+    <a  asp-action="index" asp-controller="Service">Back to Home</a>
 </div>
 
 <div class=" my-3 text-danger" asp-validation-summary="All"></div>

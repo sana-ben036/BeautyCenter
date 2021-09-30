@@ -32,7 +32,6 @@ namespace ReservationApp.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Range(minimum: 10, maximum: 14)]
-        public string PhoneNumber { get; set; }
+        public string Phone { get; set; }
     }
 }

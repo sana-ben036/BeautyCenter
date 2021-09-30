@@ -34,7 +34,7 @@ namespace ReservationApp.Models.ViewModels
 
         [Required]
         [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        public string Phone { get; set; }
 
         
 
